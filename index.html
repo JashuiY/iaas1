@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificación IAAS</title> 
+    <!--- <link rel="stylesheet" href="css/estilos.css"> --->
+    <!--- <style type="text/css">
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+        body{
+            background-color: #00594c;
+            color: white;
+        }
+        select{
+            height: 30px;
+            margin-left: auto;
+            background-color: white;
+
+            border-bottom-style: solid;
+            border-color: #002520;
+        }
+        fieldset{
+            border-color: #000;
+        }
+
+        legend{
+            font-weight: bold;
+        }
+        input{
+            /*border: 0px;*/
+            border-top-style: none;
+            border-left-style: none;
+            border-right-style: none;
+            border-bottom-style: solid;
+            border-color: #002520;
+        }
+
+        .form-all{
+            color: black;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #002520;
+            border-radius: 10px;
+            background-color: white;
+            font-family: 'Georgia', sans-serif;
+        }
+        .form-row2{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .form-row2 label{
+            width: 25%;
+            margin-right: 5px;
+        }
+        .form-row2 input{
+            width: 70%;
+            height: 30px;
+        }
+
+        .form-row3 input{
+            height: 30px;
+        }
+
+        .form-row4{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .form-row4 label{
+            width: 20%;
+            margin-right: 5px;
+        }
+        .form-row4 input{
+            width: 30%;
+            height: 30px;
+        }
+
+        .form-otros{
+            margin-bottom: 20px;
+            width: 45%;
+            margin-left: auto;
+        }
+        .form-otros input{
+            height: 30px;
+        }
+    </style> --->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    
+    <h2><center>NOTIFICACIÓN DE CASO SOSPECHOSO DE INFECCIÓN ASOCIADA A LA ATENCIÓN DE LA SALUD</h2></center>
+
+    <div class="form-all">
+        <div class="form-row2">
+            <label>Nombre del paciente:</label>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+        </div>
+
+        <div class="form-row4">
+            <label>No. Seguridad Social:</label>
+            <input type="number" name="nss" placeholder="NSS" required>
+
+            <label>Servicio:</label>
+            <select id="servicio" style="width:28%" required>
+                <option style="display:none"></option>
+                <option value="Cirugia General">Cirugía General</option>
+                <option value='Consulta Externa'>Consulta Externa</option>
+                <option value="Ginecologia">Ginecología</option>
+                <option value="Medicina Interna">Medicina Interna</option>
+                <option value="U.C.I. Adultos">U.C.I. Adultos</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+        <div class="form-otros">                
+            <label id="serviciotag" for="otroServicio" >Especifique:</label>
+            <input id="serviciotxt" type="text" name="otroServicio" placeholder="Otro servicio" >
+        </div>
+
+        <div class="form-row">
+            <label>Cama </label>
+            <input type="number" name="cama" style="width:5%; margin-right:10px" placeholder="00" required>
+            <label>Pb. IAAS: </label>
+            <select id="pb" style="width: 70%;" required>
+                <option style="display:none"></option>
+                <option value="NAVM">Neumonía Asociada A Ventilación Mecánica</option>
+                <option value="ISQX">Infección de Sitio Quirúrgico</option>
+                <option value="ITS">Infección del Torrente Sanguíneo</option>
+                <option value="IASV">IASV</option>
+            </select>
+        </div>
+
+        <div class="form-row4">
+            <label>Sitio de la infección:</label>
+            <input type="text" name="sitio" required>
+            <label>Fecha:</label>
+            <input type="datetime-local" name="fecha" required>
+        </div>
+
+        <div class="form-row3">
+            <fieldset>
+                <legend>Datos de quien notifica</legend>
+                <input style="width:40%" type="text" name="nombre2" placeholder="Nombre">
+                <input style="width:28%" type="text" name="cargo" placeholder="Cargo" required>
+                <input style="width:26%" type="number" name="matricula" placeholder="Matricula" required>
+            </fieldset>
+
+            <button class="boton" id="aceptar" type="submit">ENVIAR</button>
+        </div>
+    </div>
+
+
+    <!--- <script src="js/main.js"></script> --->
+</body>
+</html>
