@@ -18,7 +18,7 @@ input[type=number] {
 }
 
 body{
-    background: linear-gradient(var(--clear-color), var(--bg-color), var(--bold-color));
+    background: linear-gradient(var(--bold-color), var(--clear-color), var(--bg-color));
     /*background-color: var(--bg-color);*/
     color: white;
 }
@@ -26,13 +26,13 @@ select{
     height: 30px;
     margin-left: auto;
     background-color: white;
-        border-bottom-style: solid;
+    border-bottom-style: solid;
     border-color: var(--bold-color);
 }
 fieldset{
     border-color: #000;
 }
-    legend{
+legend{
     font-weight: bold;
 }
 input{
@@ -56,41 +56,56 @@ button{
     border-radius: 10px;
     background-color: white;
     font-family: 'Georgia', sans-serif;
+    vertical-align: bottom;
 }
 .form-row2{
+    display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 .form-row2 label{
-    width: 25%;
+    width: 30%;
     margin-right: 5px;
+    height: 30px;
 }
 .form-row2 input{
-    width: 70%;
+    width: 80%;
     height: 30px;
 }
 
 .form-row3 input{
     height: 30px;
+    align-items: center;
 }
 
 .form-row4{
+    display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 .form-row4 label{
     width: 20%;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 .form-row4 input{
     width: 30%;
     height: 30px;
+    /*margin-right: 20px;*/
 }
-    .form-otros{
+.form-otros{
+    display: flex;
     margin-bottom: 20px;
-    width: 45%;
+    width: 50%;
     margin-left: auto;
+}
+.form-otros label{
+    margin-right: 10px;
 }
 .form-otros input{
     height: 30px;
+    width: 70%;
+}
+
+input[type=datetime-local]{
+    width: 40%;
 }
