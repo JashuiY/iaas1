@@ -110,8 +110,8 @@
             <label>No. Seguridad Social:</label>
             <input type="number" name="nss" placeholder="NSS" required>
 
-            <label>Servicio:</label>
-            <select id="servicio" style="width:28%" required>
+            <label style="text-align: end;">Servicio:</label>
+            <select id="servicio" style="width:40%" required>
                 <option style="display:none"></option>
                 <option value="Cirugia General">Cirugía General</option>
                 <option value='Consulta Externa'>Consulta Externa</option>
@@ -128,9 +128,9 @@
 
         <div class="form-row">
             <label>Cama </label>
-            <input type="number" name="cama" style="width:5%; margin-right:10px" placeholder="00" required>
-            <label>Pb. IAAS: </label>
-            <select id="pb" style="width: 70%;" required>
+            <input type="number" name="cama" style="width:5%; margin-right:10px; text-align:center;" placeholder="00" required>
+            <label>Pb. IAAS:</label>
+            <select id="pb" style="width: 72%;" required>
                 <option style="display:none"></option>
                 <option value="NAVM">Neumonía Asociada A Ventilación Mecánica</option>
                 <option value="ISQX">Infección de Sitio Quirúrgico</option>
@@ -142,16 +142,16 @@
         <div class="form-row4">
             <label>Sitio de la infección:</label>
             <input type="text" name="sitio" required>
-            <label>Fecha:</label>
+            <label style="text-align: end;">Fecha:</label>
             <input type="datetime-local" name="fecha" required>
         </div>
 
         <div class="form-row3">
             <fieldset>
                 <legend>Datos de quien notifica</legend>
-                <input style="width:40%" type="text" name="nombre2" placeholder="Nombre">
-                <input style="width:28%" type="text" name="cargo" placeholder="Cargo" required>
-                <input style="width:26%" type="number" name="matricula" placeholder="Matricula" required>
+                    <input style="width:35%" type="text" name="nombre2" placeholder="Nombre">
+                    <input style="width:25%" type="text" name="cargo" placeholder="Cargo" required>
+                    <input style="width:25%" type="number" name="matricula" placeholder="Matricula" required>
             </fieldset>
 
             <button class="boton" id="aceptar" type="submit">ENVIAR</button>
