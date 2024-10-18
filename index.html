@@ -3,36 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/all.js"></script>
     <title>Notificación IAAS</title> 
     <!--- <link rel="stylesheet" href="css/estilos.css"> --->
-    <!--- <style type="text/css">
+    <style type="text/css">
+        :root{
+            /*--bg-color: #00594c;
+            --bold-color: #002520;*/
+            --bg-color: #d137a3;
+            --bold-color: #51143f;
+            --clear-color: #b22e8a;
+            /*--bold-color: #0409b0;
+            --bg-color: #0409b0;
+            --clear-color: #0409b0;*/
+        }
+
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }
-
         /* Firefox */
         input[type=number] {
           -moz-appearance: textfield;
         }
+
         body{
-            background-color: #00594c;
+            background: var(--bold-color); /*linear-gradient(-45deg, var(--bold-color), var(--bg-color), var(--clear-color));*/
+            /*background-color: var(--bg-color);*/
             color: white;
         }
         select{
             height: 30px;
             margin-left: auto;
             background-color: white;
-
             border-bottom-style: solid;
-            border-color: #002520;
+            border-color: var(--bold-color);
         }
         fieldset{
-            border-color: #000;
+            border-color: var(--bold-color);
         }
-
         legend{
             font-weight: bold;
         }
@@ -40,28 +51,33 @@
             /*border: 0px;*/
             border-top-style: none;
             border-left-style: none;
-            border-right-style: none;
+            border-right-style: solid;
             border-bottom-style: solid;
-            border-color: #002520;
+            border-color: var(--bold-color);
         }
 
         .form-all{
             color: black;
-            max-width: 600px;
+            max-width: 338px;
             margin: auto;
             padding: 20px;
-            border: 2px solid #002520;
+            border: 2px solid var(--bold-color);
             border-radius: 10px;
             background-color: white;
             font-family: 'Georgia', sans-serif;
+            vertical-align: bottom;
         }
         .form-row2{
+            display: flex;
             margin-top: 20px;
             margin-bottom: 20px;
         }
         .form-row2 label{
-            width: 25%;
-            margin-right: 5px;
+            width: 35%;
+            margin-right: 10px;
+            height: 30px;
+            text-align: end;
+            line-height: 20px;
         }
         .form-row2 input{
             width: 70%;
@@ -70,95 +86,244 @@
 
         .form-row3 input{
             height: 30px;
+            align-items: center;
+            display: inline-block;
+            box-sizing: border-box;
         }
 
         .form-row4{
+            display: flex;
             margin-top: 20px;
             margin-bottom: 20px;
         }
         .form-row4 label{
             width: 20%;
-            margin-right: 5px;
+            margin-right: 10px;
         }
         .form-row4 input{
             width: 30%;
             height: 30px;
+            /*margin-right: 20px;*/
         }
-
         .form-otros{
+            display: flex;
             margin-bottom: 20px;
-            width: 45%;
+            width: 80%;
             margin-left: auto;
+        }
+        .form-otros label{
+            margin-right: 10px;
+            height: 30px;
         }
         .form-otros input{
             height: 30px;
+            width: 70%;
         }
-    </style> --->
-    <link rel="stylesheet" href="css/estilos.css">
+
+        input[type=datetime-local]{
+            width: 70%;
+        }        
+        button{
+            font-size: 20px;
+            display: flex;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 10px;
+            height: 50px;
+            width: 40%;
+            justify-content: center;
+            align-items: center;
+        }
+        a{
+            color: var(--bold-color);
+            text-decoration: none;
+            border-color: black;
+            cursor: default;
+        }
+    </style> 
 </head>
 <body>
     
     <h2><center>NOTIFICACIÓN DE CASO SOSPECHOSO DE INFECCIÓN ASOCIADA A LA ATENCIÓN DE LA SALUD</h2></center>
-
     <div class="form-all">
-        <div class="form-row2">
-            <label>Nombre del paciente:</label>
-            <input type="text" name="nombre" placeholder="Nombre" required>
-        </div>
+        <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">
+            <div class="form-row2">
+                <label>Nombre del paciente:</label>
+                <input id="nombreP" type="text" name="nombre" placeholder="Nombre" required>
+            </div>
 
-        <div class="form-row4">
-            <label>No. Seguridad Social:</label>
-            <input type="number" name="nss" placeholder="NSS" required>
+            <div class="form-row2">
+                <label>No. Seguridad Social:</label>
+                <input id="nss" type="number" name="nss" placeholder="NSS" required>
+            </div>
 
-            <label style="text-align: end;">Servicio:</label>
-            <select id="servicio" style="width:40%" required>
-                <option style="display:none"></option>
-                <option value="Cirugia General">Cirugía General</option>
-                <option value='Consulta Externa'>Consulta Externa</option>
-                <option value="Ginecologia">Ginecología</option>
-                <option value="Medicina Interna">Medicina Interna</option>
-                <option value="U.C.I. Adultos">U.C.I. Adultos</option>
-                <option value="Otro">Otro</option>
-            </select>
-        </div>
-        <div class="form-otros">                
-            <label id="serviciotag" for="otroServicio" >Especifique:</label>
-            <input id="serviciotxt" type="text" name="otroServicio" placeholder="Otro servicio" >
-        </div>
+            <div class="form-row2">
+                <label style="line-height: 40px;">Servicio:</label>
+                <select id="servicio" style="width:70%" required>
+                    <option style="display:none"></option>
+                    <option value="Cirugia General">Cirugía General</option>
+                    <option value='Consulta Externa'>Consulta Externa</option>
+                    <option value="Ginecologia">Ginecología</option>
+                    <option value="Medicina Interna">Medicina Interna</option>
+                    <option value="U.C.I. Adultos">U.C.I. Adultos</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
 
-        <div class="form-row">
-            <label>Cama </label>
-            <input type="number" name="cama" style="width:5%; margin-right:10px; text-align:center;" placeholder="00" required>
-            <label>Pb. IAAS:</label>
-            <select id="pb" style="width: 72%;" required>
-                <option style="display:none"></option>
-                <option value="NAVM">Neumonía Asociada A Ventilación Mecánica</option>
-                <option value="ISQX">Infección de Sitio Quirúrgico</option>
-                <option value="ITS">Infección del Torrente Sanguíneo</option>
-                <option value="IASV">IASV</option>
-            </select>
-        </div>
+            <div class="form-otros">                
+                <label id="serviciotag" for="otroServicio" style="line-height: 40px;" hidden>Especifique:</label>
+                <input id="serviciotxt" type="text" name="otroServicio" placeholder="Otro servicio" hidden>
+            </div>
 
-        <div class="form-row4">
-            <label>Sitio de la infección:</label>
-            <input type="text" name="sitio" required>
-            <label style="text-align: end;">Fecha:</label>
-            <input type="datetime-local" name="fecha" required>
-        </div>
+            <div class="form-row">
+                <label>Cama</label>
+                <input id="cama" type="number" name="cama" style="width:8%; margin-right:5px; text-align:center;" placeholder="000" required>
+                <label>Pb. IAAS:</label>
+                <select id="pb" style="width: 50%;" required>
+                    <option style="display:none"></option>
+                    <option value="NAVM">Neumonía Asociada a Ventilación Mecánica</option>
+                    <option value="ISQX">Infección de Sitio Quirúrgico</option>
+                    <option value="ITS">Infección del Torrente Sanguíneo</option>
+                    <option value="IASV">Infección Asociada a Sonda Vesical</option>
+                </select>
+            </div>
 
-        <div class="form-row3">
-            <fieldset>
-                <legend>Datos de quien notifica</legend>
-                    <input style="width:35%" type="text" name="nombre2" placeholder="Nombre">
-                    <input style="width:25%" type="text" name="cargo" placeholder="Cargo" required>
-                    <input style="width:25%" type="number" name="matricula" placeholder="Matricula" required>
-            </fieldset>
+            <div class="form-row2">
+                <label>Sitio de la infección:</label>
+                <input id="sitio" type="text" name="sitio" required>
+            </div>
 
-            <button class="boton" id="aceptar" type="submit">ENVIAR</button>
-        </div>
+            <div class="form-row2">
+                <label style="line-height: 40px;">Fecha:</label>
+                <input id="fecha" type="datetime-local" name="fecha" required>
+            </div>
+
+            <div class="form-row3">
+                <fieldset>
+                    <legend>Datos de quien notifica</legend>
+                        <div class="form-row2">
+                            <input id="nombre" style="width:55%; margin-right: 10px" type="text" name="nombre2" placeholder="Nombre">
+                            <input id="cargo" style="width:45%; margin-left:auto" type="text" name="cargo" placeholder="Cargo" required>
+                        </div>
+                        <input id="matricula" style="width:45%" type="number" name="matricula" placeholder="Matricula" required>
+                </fieldset>
+            </div>
+
+            <div class="form-row2">
+                <button id="reset" type="reset" class="boton">Limpiar</button>
+                <button id="submit" type="submit" class="boton">Enviar</button>
+            </div>
+        </form>
+        
     </div>
+    <footer>
+        <div style="text-align: right; max-width: 338px; margin: auto; margin-top: 20px;">
+            <i class="fa-solid fa-eye"></i><a href="visualize.html" style="color: white;"> Ver registros</a>
+        </div>
+    </footer>
 
+    <script type="text/javascript">
+        document.getElementById('servicio').addEventListener('change', function(event){
+            if (document.getElementById('servicio').value=="Otro"){
+                document.getElementById('serviciotxt').value = '';
+                document.getElementById('serviciotag').hidden = false;
+                document.getElementById('serviciotxt').hidden = false;
+                document.getElementById('serviciotxt').required = true;
+            }else{
+                document.getElementById('serviciotag').hidden = true;
+                document.getElementById('serviciotxt').hidden = true;
+                document.getElementById('serviciotxt').required = false;
+            }
+            console.log('fecha', document.getElementById('fecha').value)
+        });
 
+        async function submitForm() {
+            document.getElementById('submit').disabled = true;
+            
+            if (!(document.getElementById('nombreP').value).includes(" ")) {
+                alert('Ingrese un Nombre Completo.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (document.getElementById('nss').value.length != 10){
+                alert('Ingrese un NSS correcto: 10 dígitos.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (!(document.getElementById('nombre').value).includes(" ")) {
+                alert('Ingrese su Nombre Completo.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (document.getElementById('matricula').value.length != 8){
+                alert('Ingrese una matricula correcta: 8 dígitos.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (document.getElementById('servicio').value=="Otro"){
+                serviciovalue = document.getElementById('serviciotxt').value;
+                if (serviciovalue == ''){
+                    document.getElementById('submit').disabled = false;
+                    alert('Escriba el otro servicio. \nEn caso de no aparecer la casilla, seleccione un valor diferente y seleccione nuevamente Otro. \nO recargue.');
+                    return;
+                }
+            }else{
+                serviciovalue = document.getElementById('servicio').value;
+            }
+
+            const formData = {
+                nombreP: document.getElementById('nombreP').value.toUpperCase(),
+                nss: document.getElementById('nss').value,
+                servicio: serviciovalue.toUpperCase(),
+                cama: document.getElementById('cama').value,
+                pb: document.getElementById('pb').value,
+                sitio: document.getElementById('sitio').value.toUpperCase(),
+                fecha: document.getElementById('fecha').value,
+                nombre: document.getElementById('nombre').value.toUpperCase(),
+                cargo: document.getElementById('cargo').value.toUpperCase(),
+                matricula: document.getElementById('matricula').value
+            };
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxUY9Bhq6SdNhYmJxjxf9KzE48RD-z3q2czN_djHDVY8SgqX2mVnTjd30222RmcgZQm/exec', { // Replace with your Google Apps Script URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    console.log('Data saved and received:', formData); //result.data[0]["oportunidad"]
+                    alert('Información registrada correctamente.');
+                    
+                    document.getElementById('submit').disabled = false;
+                    document.getElementById('nombreP').value = "";
+                    document.getElementById('nss').value = "";
+                    document.getElementById('servicio').value = "";
+                    document.getElementById('cama').value = "";
+                    document.getElementById('pb').value = "";
+                    document.getElementById('sitio').value = "";
+                    document.getElementById('fecha').value = "";
+                } else {
+                    console.error('Error:', result.message);
+                    document.getElementById('result').textContent = `Error: ${result.message}`;
+                }
+            } catch (error) {
+                console.error('Error submitting data:', error);
+                document.getElementById('result').textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
     <!--- <script src="js/main.js"></script> --->
 </body>
 </html>
