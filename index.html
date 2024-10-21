@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/all.js"></script>
+    <title>Notificación IAAS</title> 
+    <!--- <link rel="stylesheet" href="css/estilos.css"> --->
+    <style type="text/css">
+        :root{
+            /*--bg-color: #00594c;
+            --bold-color: #002520;*/
+            --bg-color: #d137a3;
+            --bold-color: #51143f;
+            --clear-color: #b22e8a;
+            /*--bold-color: #0409b0;
+            --bg-color: #0409b0;
+            --clear-color: #0409b0;*/
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+
+        body{
+            background: var(--bold-color); /*linear-gradient(-45deg, var(--bold-color), var(--bg-color), var(--clear-color));*/
+            /*background-color: var(--bg-color);*/
+            color: white;
+        }
+        select{
+            background-color: white;
+            border-bottom-style: solid;
+            border-color: var(--bold-color);
+            height: 25px;
+        }
+        fieldset{
+            border-color: var(--bold-color);
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        legend{
+            font-weight: bold;
+        }
+        input{
+            border-top-style: none;
+            border-left-style: none;
+            border-right-style: none;
+            border-bottom-style: solid;
+            border-color: var(--bold-color);
+            height: 25px;
+        }
+        label{
+            height: 25px;
+        }
+
+        .form-all{
+            color: black;
+            max-width: 338px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid var(--bold-color);
+            border-radius: 10px;
+            background-color: white;
+            font-family: 'Georgia', sans-serif;
+        }
+        .form-row2{
+            display: flex;
+            margin-top: 10px;            
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .form-row2 label{
+            width: 45%;
+            margin-left: auto;
+            margin-right: 5px;
+        }
+        .form-row2 input[type=text]{
+            width: 50%;
+            margin-left: 0;
+            margin-right: 5px;
+        }
+        .form-row2 input[type=number]{
+            width: 50%;
+            margin-left: 0;
+            margin-right: 5px;
+        }
+        .form-row2 select{
+            margin-left: 0;
+            margin-right: 5px;
+            width: 140%;
+        }
+        .date{
+            display: flex;
+            width: 65%;
+        }
+
+        .form-row{
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .form-row input[type=number]{
+            width:10%; 
+            margin-right:5px; 
+        }
+        .form-row select{
+            width: 50%;
+            margin-left: auto;
+            margin-right: 5px;
+        }
+
+        .form-labels{
+            display: flex;
+            font-size: 12px;
+        }
+        .form-labels label{
+            width: 50%;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .form-otros{
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .form-otros label{
+            width: 50%;
+            margin-right: 5px;
+            margin-left: auto;
+            text-align: right;
+        }
+        .form-otros input{
+            width: 50%;
+            margin-right: 5px;
+            margin-left: auto;
+        }
+       
+        button{
+            display: flex;
+            font-size: 20px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 10px;
+            height: 50px;
+            width: 40%;
+            justify-content: center;
+            align-items: center;
+            border-color: var(--bold-color);
+        }
+        .send{
+            text-align: right; 
+            max-width: 338px; 
+            margin: auto; 
+            margin-top: 20px;
+        }
+        a{
+            color: var(--bold-color);
+            text-decoration: none;
+            border-color: black;
+            cursor: default;
+        }
+        .nospace{
+            display: flex;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        .nospace select{
+            width: 50%;
+            margin-right: 5px;
+        }
+        /**/
+    </style> 
+</head>
+<body>
+    
+    <h2><center>NOTIFICACIÓN DE CASO SOSPECHOSO DE INFECCIÓN ASOCIADA A LA ATENCIÓN DE LA SALUD</h2></center>
+    <!---<h5 align="center" ><script type="text/javascript">var timestamp = new Date();document.write(timestamp.toLocaleString("es-mx"));</script></h5>--->
+    <div class="form-all">
+        <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">
+            <div class="form-row2">
+                <label>Fecha y hora de notificación:</label>                
+                <div class="date"><script type="text/javascript">var timestamp = new Date();document.write(timestamp.toLocaleString("es-mx"));</script></div>
+            </div>
+            <fieldset>
+                <legend>Datos del paciente</legend>
+                <div class="form-row2">
+                    <input id="nombreP" type="text" name="nombre" placeholder="Nombre(s)" required>
+                    <input id="apellidoP" type="text" name="apellido" placeholder="Apellidos" required>
+                </div>
+
+                <div class="form-row2">
+                    <input id="nss" type="number" name="nss" placeholder="NSS" required>
+                    <input id="am" type="text" name="am" placeholder="Agregado Médico" required>
+                </div>
+            </fieldset>
+
+            <div class="form-row2">
+                <label>Servicio:</label>
+                <select id="servicio"  required>
+                    <option style="display:none"></option>
+                    <option value="Cirugía general">Cirugía general</option>
+                    <option value="Cirugía Pediátrica">Cirugía Pediátrica</option>
+                    <option value="Ginecología">Ginecología</option>
+                    <option value="Medicina Interna">Medicina Interna</option>
+                    <option value="Pediatría">Pediatría</option>
+                    <option value="U.C.I. Adultos">U.C.I. Adultos</option>
+                    <option value="U.C.I. Neonatal">U.C.I. Neonatal</option>
+                    <option value="Urgencias">Urgencias</option>
+                    <option value="Urgencias Pediátricas">Urgencias Pediátricas</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-otros">                
+                <label id="serviciotag" for="otroServicio"  hidden>Especifique:</label>
+                <input id="serviciotxt" type="text" name="otroServicio" placeholder="Otro servicio" hidden>
+            </div>
+
+            <div class="form-row">
+                <label>Cama:</label>
+                <input id="cama" type="number" name="cama" placeholder="#" required>
+                <label>Pb. IAAS:</label>
+                <select id="pb"  required>
+                    <option style="display:none"></option>
+                    <option value="ISQ">Infección de Sitio Quirúrgico</option>
+                    <option value="NAAS">Neumonías Asociadas a la Atención de la Salud</option>
+                    <option value="ITS">Infección del Torrente Sanguíneo Asociada a la Atención de la Salud</option>
+                    <option value="IVU-CU">Infección de Vías Urinarias Asociada a Catéter Urinario</option>
+                    <option value="ICD"> Infección por Clostridioides difficile</option>
+                </select>
+            </div>
+
+
+<!---           OPCION 1             --->
+            <div class="form-row2">
+                <label id="pblabel" hidden>Tipo:</label>
+                <select id="pboption"  hidden>
+                    <option style="display:none"></option>
+                </select>
+            </div>
+
+            <div class="form-row3">
+                <fieldset>
+                    <legend>Datos de quien notifica</legend>
+                        <div class="form-row2">
+                            <input id="nombre" type="text" name="nombre2" placeholder="Nombre(s) y Apellidos" required>                     
+                            <input id="matricula"  type="number" name="matricula" placeholder="Matrícula" required>
+                        </div>
+                        <div class="form-labels">
+                            <label >Categoría:</label>
+                            <label id="espL" hidden>Especialidad:</label>
+                        </div>
+                        <div class="nospace">
+                            <select id="categoria"  required>
+                                <option style="display:none"></option>
+                                <option value="Enfermera">Enfermera</option>
+                                <option value="Médico">Médico</option>
+                            </select>
+                            <select id="especialidad" hidden>
+                                <option style="display:none"></option>
+                                <option value="Anestesiología">Anestesiología</option>
+                                <option value="Cirugía General">Cirugía General</option>
+                                <option value="Ginecología">Ginecología</option>
+                                <option value="Endocrinología">Endocrinología</option>
+                                <option value="Cirugía General">Cirugía General</option>
+                            </select>
+                        </div>                        
+                </fieldset>
+            </div>
+
+            <div class="form-row2">
+                <button id="reset" type="reset" class="boton">Limpiar</button>
+                <button id="submit" type="submit" class="boton">Enviar</button>
+            </div>
+        </form>
+        
+    </div>
+    <footer>
+        <div class="send">
+            <i class="fa-solid fa-eye"></i><a href="visualize.html" style="color: white;"> Ver registros</a>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        document.getElementById('categoria').addEventListener('change', function(event){
+            var value = document.getElementById('categoria').value;
+            if (value == 'Médico'){
+                document.getElementById('especialidad').hidden = false;
+                document.getElementById('espL').hidden = false;
+                document.getElementById('especialidad').required = true;
+            } else{
+                document.getElementById('especialidad').hidden = true;
+                document.getElementById('espL').hidden = true;
+                document.getElementById('especialidad').required = false;
+            }
+        });
+        document.getElementById('pb').addEventListener('change', function(event){ 
+            var value = document.getElementById('pb').value;
+            var elemento = document.getElementById('pboption');
+            elemento.innerHTML = ('<option style="display:none"></option>');
+            if (value == 'ISQ'){
+                elemento.innerHTML += ('<option value="Infección Incisional superficial">Infección Incisional superficial</option>');
+                elemento.innerHTML += ('<option value="Infección Incisional profunda">Infección Incisional profunda</option>');
+                elemento.innerHTML += ('<option value="Infección de órganos y espacios">Infección de órganos y espacios</option>');
+                document.getElementById('pboption').hidden = false;
+                document.getElementById('pblabel').hidden = false;
+                document.getElementById('pboption').required = true;
+            } else if (value == 'NAAS'){
+                elemento.innerHTML += ('<option value="NAV">Neumonía Asociada a Ventilador</option>');
+                elemento.innerHTML += ('<option value="NAAS-RP">NAAS Relacionada a Procedimiento</option>');
+                elemento.innerHTML += ('<option value="NAAS-NRP">NAAS No Relacionada a Procedimiento</option>');
+                document.getElementById('pboption').hidden = false;
+                document.getElementById('pblabel').hidden = false;
+                document.getElementById('pboption').required = true;
+            } else if (value == 'ITS'){
+                elemento.innerHTML += ('<option value="CC">ITS relacionada a catéter central </option>');
+                elemento.innerHTML += ('<option value="RP">ITS relacionada a procedimiento</option>');
+                elemento.innerHTML += ('<option value="IV">ITS relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos </option>');
+                elemento.innerHTML += ('<option value="DBM">ITS secundario a daño de la barrera mucosa</option>');
+                document.getElementById('pboption').hidden = false;
+                document.getElementById('pblabel').hidden = false;
+                document.getElementById('pboption').required = true;
+            } else{
+                document.getElementById('pboption').hidden = true;
+                document.getElementById('pblabel').hidden = true;
+                document.getElementById('pboption').required = false;
+            }
+        });
+        document.getElementById('servicio').addEventListener('change', function(event){
+            if (document.getElementById('servicio').value=="Otro"){
+                document.getElementById('serviciotxt').value = '';
+                document.getElementById('serviciotag').hidden = false;
+                document.getElementById('serviciotxt').hidden = false;
+                document.getElementById('serviciotxt').required = true;
+            }else{
+                document.getElementById('serviciotag').hidden = true;
+                document.getElementById('serviciotxt').hidden = true;
+                document.getElementById('serviciotxt').required = false;
+            }
+        });
+
+        async function submitForm() {
+            document.getElementById('submit').disabled = true;
+            
+            /*if (!(document.getElementById('nombreP').value).includes(" ")) {
+                alert('Ingrese un Nombre Completo.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }*/
+
+            if (document.getElementById('nss').value.length != 10){
+                alert('Ingrese un NSS correcto: 10 dígitos.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (document.getElementById('am').value.length != 8) {
+                alert('Verifique el agregado médico. (8 caracteres)')
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (!(document.getElementById('nombre').value).includes(" ")) {
+                alert('Ingrese su Nombre Completo.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (document.getElementById('matricula').value.length != 8){
+                alert('Ingrese una matricula correcta: 8 dígitos.');
+                document.getElementById('submit').disabled = false;
+                return;
+            }
+
+            if (document.getElementById('servicio').value=="Otro"){
+                serviciovalue = document.getElementById('serviciotxt').value;
+                if (serviciovalue == ''){
+                    document.getElementById('submit').disabled = false;
+                    alert('Escriba el otro servicio. \nEn caso de no aparecer la casilla, seleccione un valor diferente y seleccione nuevamente Otro. \nO recargue.');
+                    return;
+                }
+            }else{
+                serviciovalue = document.getElementById('servicio').value;
+            }
+
+            if (document.getElementById('categoria').value == 'Médico') {
+                categoriavalue = document.getElementById('especialidad').value.toUpperCase();
+            } else{
+                categoriavalue = document.getElementById('categoria').value.toUpperCase();
+            }
+
+            var nombreCompleto = document.getElementById('nombreP').value.toUpperCase() + ' ' + document.getElementById('apellidoP').value.toUpperCase();
+            const formData = {
+                nombreP: nombreCompleto,
+                nss: document.getElementById('nss').value,
+                am: document.getElementById('am').value,
+                servicio: serviciovalue.toUpperCase(),
+                cama: document.getElementById('cama').value,
+                pb: document.getElementById('pb').value.toUpperCase(),
+                tipo: document.getElementById('pboption').value.toUpperCase(),
+                nombre: document.getElementById('nombre').value.toUpperCase(),
+                matricula: document.getElementById('matricula').value,
+                cargo: categoriavalue.toUpperCase()
+            };
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxUY9Bhq6SdNhYmJxjxf9KzE48RD-z3q2czN_djHDVY8SgqX2mVnTjd30222RmcgZQm/exec', { // Replace with your Google Apps Script URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    console.log('Data saved and received:', formData); //result.data[0]["oportunidad"]
+                    alert('Información registrada correctamente.');
+                    
+                    document.getElementById('submit').disabled = false;
+                    document.getElementById('nombreP').value = "";
+                    document.getElementById('apellidoP').value = "";
+                    document.getElementById('nss').value = "";
+                    document.getElementById('am').value = "";
+                    document.getElementById('servicio').value = "";
+                    document.getElementById('cama').value = "";
+                    document.getElementById('pb').value = "";
+                    document.getElementById('pboption').value = "";
+                } else {
+                    console.error('Error:', result.message);
+                    document.getElementById('result').textContent = `Error: ${result.message}`;
+                }
+            } catch (error) {
+                console.error('Error submitting data:', error);
+                document.getElementById('result').textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+    <!--- <script src="js/main.js"></script> --->
+</body>
+</html>
