@@ -183,6 +183,9 @@
     
     <h2><center>NOTIFICACIÓN DE CASO SOSPECHOSO DE INFECCIÓN ASOCIADA A LA ATENCIÓN DE LA SALUD</h2></center>
     <!---<h5 align="center" ><script type="text/javascript">var timestamp = new Date();document.write(timestamp.toLocaleString("es-mx"));</script></h5>--->
+    <div class="send" id="loader" hidden>
+        <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+    </div>
     <div class="form-all">
         <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">
             <div class="form-row2">
@@ -348,6 +351,8 @@
         });
 
         async function submitForm() {
+            var loader = document.getElementById('loader');
+            loader.hidden = false;
             document.getElementById('submit').disabled = true;
             
             /*if (!(document.getElementById('nombreP').value).includes(" ")) {
@@ -359,24 +364,28 @@
             if (document.getElementById('nss').value.length != 10){
                 alert('Ingrese un NSS correcto: 10 dígitos.');
                 document.getElementById('submit').disabled = false;
+                loader.hidden = true;
                 return;
             }
 
             if (document.getElementById('am').value.length != 8) {
                 alert('Verifique el agregado médico. (8 caracteres)')
                 document.getElementById('submit').disabled = false;
+                loader.hidden = true;
                 return;
             }
 
             if (!(document.getElementById('nombre').value).includes(" ")) {
                 alert('Ingrese su Nombre Completo.');
                 document.getElementById('submit').disabled = false;
+                loader.hidden = true;
                 return;
             }
 
             if (document.getElementById('matricula').value.length != 8){
                 alert('Ingrese una matricula correcta: 8 dígitos.');
                 document.getElementById('submit').disabled = false;
+                loader.hidden = true;
                 return;
             }
 
@@ -384,6 +393,7 @@
                 serviciovalue = document.getElementById('serviciotxt').value;
                 if (serviciovalue == ''){
                     document.getElementById('submit').disabled = false;
+                    loader.hidden = true;
                     alert('Escriba el otro servicio. \nEn caso de no aparecer la casilla, seleccione un valor diferente y seleccione nuevamente Otro. \nO recargue.');
                     return;
                 }
@@ -401,7 +411,7 @@
             const formData = {
                 nombreP: nombreCompleto,
                 nss: document.getElementById('nss').value,
-                am: document.getElementById('am').value,
+                am: document.getElementById('am').value.toUpperCase(),
                 servicio: serviciovalue.toUpperCase(),
                 cama: document.getElementById('cama').value,
                 pb: document.getElementById('pb').value.toUpperCase(),
@@ -426,8 +436,10 @@
                 const result = await response.json();
 
                 if (result.status === 'success') {
+                    loader.hidden = true;
                     console.log('Data saved and received:', formData); //result.data[0]["oportunidad"]
-                    alert('Información registrada correctamente.');
+                    var not = new Date();
+                    alert('Información registrada correctamente.\nFecha notificación: ' + not.toLocaleString('es-mx'));
                     
                     document.getElementById('submit').disabled = false;
                     document.getElementById('nombreP').value = "";
