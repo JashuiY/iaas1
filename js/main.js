@@ -115,14 +115,14 @@ async function submitForm() {
     var nombreCompleto = document.getElementById('nombreP').value.toUpperCase() + ' ' + document.getElementById('apellidoP').value.toUpperCase();
     const formData = {
         nombreP: nombreCompleto,
-        nss: document.getElementById('nss').value,
+        nss: document.getElementById('nss').value.toString(),
         am: document.getElementById('am').value.toUpperCase(),
         servicio: serviciovalue.toUpperCase(),
         cama: document.getElementById('cama').value,
         pb: document.getElementById('pb').value.toUpperCase(),
         tipo: document.getElementById('pboption').value.toUpperCase(),
         nombre: document.getElementById('nombre').value.toUpperCase(),
-        matricula: document.getElementById('matricula').value,
+        matricula: document.getElementById('matricula').value.toString(),
         cargo: categoriavalue.toUpperCase()
     };
     try {
