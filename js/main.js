@@ -155,6 +155,8 @@ async function submitForm() {
             document.getElementById('cama').value = "";
             document.getElementById('pb').value = "";
             document.getElementById('pboption').value = "";
+            document.getElementById('pboption').hidden = true;
+            document.getElementById('pblabel').hidden = true;
         } else {
             console.error('Error:', result.message);
             document.getElementById('result').textContent = `Error: ${result.message}`;
