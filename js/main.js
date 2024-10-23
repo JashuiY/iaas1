@@ -22,17 +22,17 @@ document.getElementById('pb').addEventListener('change', function(event){
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
     } else if (value == 'NAAS'){
-        elemento.innerHTML += ('<option value="NAV">Neumonía Asociada a Ventilador</option>');
-        elemento.innerHTML += ('<option value="NAAS-RP">NAAS Relacionada a Procedimiento</option>');
-        elemento.innerHTML += ('<option value="NAAS-NRP">NAAS No Relacionada a Procedimiento</option>');
+        elemento.innerHTML += ('<option value="Neumonía Asociada a Ventilador">Neumonía Asociada a Ventilador</option>');
+        elemento.innerHTML += ('<option value="Relacionada a Procedimiento">NAAS Relacionada a Procedimiento</option>');
+        elemento.innerHTML += ('<option value="No Relacionada a Procedimiento">NAAS No Relacionada a Procedimiento</option>');
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
     } else if (value == 'ITS'){
-        elemento.innerHTML += ('<option value="CC">ITS relacionada a catéter central </option>');
-        elemento.innerHTML += ('<option value="RP">ITS relacionada a procedimiento</option>');
-        elemento.innerHTML += ('<option value="IV">ITS relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos </option>');
-        elemento.innerHTML += ('<option value="DBM">ITS secundario a daño de la barrera mucosa</option>');
+        elemento.innerHTML += ('<option value="Relacionada a catéter central">ITS Relacionada a catéter central</option>');
+        elemento.innerHTML += ('<option value="Relacionada a Procedimiento">ITS Relacionada a Procedimiento</option>');
+        elemento.innerHTML += ('<option value="Relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos">ITS Relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos</option>');
+        elemento.innerHTML += ('<option value="Secundario a daño de la barrera mucosa">ITS Secundario a daño de la barrera mucosa</option>');
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
