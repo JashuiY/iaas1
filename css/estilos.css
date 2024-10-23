@@ -16,7 +16,7 @@ input[type=number] {
 }
 
 body{
-    background: #b48e5d;/*var(--bold-color); /*linear-gradient(-45deg, var(--bold-color), var(--bg-color), var(--clear-color));*/
+    background: #b09c7a;/*var(--bold-color); /*linear-gradient(-45deg, var(--bold-color), var(--bg-color), var(--clear-color));*/
     /*background-color: var(--bg-color);*/
     color: white;
 }
