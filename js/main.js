@@ -14,21 +14,21 @@ document.getElementById('pb').addEventListener('change', function(event){
     var value = document.getElementById('pb').value;
     var elemento = document.getElementById('pboption');
     elemento.innerHTML = ('<option style="display:none"></option>');
-    if (value == 'ISQ'){
+    if (value == 'Infección de Sitio Quirúrgico'){
         elemento.innerHTML += ('<option value="Infección Incisional superficial">Infección Incisional superficial</option>');
         elemento.innerHTML += ('<option value="Infección Incisional profunda">Infección Incisional profunda</option>');
         elemento.innerHTML += ('<option value="Infección de órganos y espacios">Infección de órganos y espacios</option>');
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
-    } else if (value == 'NAAS'){
+    } else if (value == 'Neumonías Asociadas a la Atención de la Salud'){
         elemento.innerHTML += ('<option value="NAV">Neumonía Asociada a Ventilador</option>');
         elemento.innerHTML += ('<option value="NAAS-RP">NAAS Relacionada a Procedimiento</option>');
         elemento.innerHTML += ('<option value="NAAS-NRP">NAAS No Relacionada a Procedimiento</option>');
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
-    } else if (value == 'ITS'){
+    } else if (value == 'Infección del Torrente Sanguíneo'){
         elemento.innerHTML += ('<option value="CC">ITS relacionada a catéter central </option>');
         elemento.innerHTML += ('<option value="RP">ITS relacionada a procedimiento</option>');
         elemento.innerHTML += ('<option value="IV">ITS relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos </option>');
@@ -36,10 +36,21 @@ document.getElementById('pb').addEventListener('change', function(event){
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
+    } else if (value=='Otro'){
+        document.getElementById('pbtxt').value = '';
+        document.getElementById('pbtag').hidden = false;
+        document.getElementById('pbtxt').hidden = false;
+        document.getElementById('pbtxt').required = true;
+        document.getElementById('pboption').hidden = true;
+        document.getElementById('pblabel').hidden = true;
+        document.getElementById('pboption').required = false;
     } else{
         document.getElementById('pboption').hidden = true;
         document.getElementById('pblabel').hidden = true;
         document.getElementById('pboption').required = false;
+        document.getElementById('pbtag').hidden = true;
+        document.getElementById('pbtxt').hidden = true;
+        document.getElementById('pbtxt').required = false;
     }
 });
 document.getElementById('servicio').addEventListener('change', function(event){
@@ -52,19 +63,6 @@ document.getElementById('servicio').addEventListener('change', function(event){
         document.getElementById('serviciotag').hidden = true;
         document.getElementById('serviciotxt').hidden = true;
         document.getElementById('serviciotxt').required = false;
-    }
-});
-
-document.getElementById('pb').addEventListener('change', function(event){
-    if (document.getElementById('pb').value=="Otro"){
-        document.getElementById('pbtxt').value = '';
-        document.getElementById('pbtag').hidden = false;
-        document.getElementById('pbtxt').hidden = false;
-        document.getElementById('pbtxt').required = true;
-    }else{
-        document.getElementById('pbtag').hidden = true;
-        document.getElementById('pbtxt').hidden = true;
-        document.getElementById('pbtxt').required = false;
     }
 });
 
