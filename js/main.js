@@ -22,17 +22,17 @@ document.getElementById('pb').addEventListener('change', function(event){
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
     } else if (value == 'NAAS'){
-        elemento.innerHTML += ('<option value="Neumonía Asociada a Ventilador">Neumonía Asociada a Ventilador</option>');
-        elemento.innerHTML += ('<option value="Relacionada a Procedimiento">NAAS Relacionada a Procedimiento</option>');
-        elemento.innerHTML += ('<option value="No Relacionada a Procedimiento">NAAS No Relacionada a Procedimiento</option>');
+        elemento.innerHTML += ('<option value="NAV">Neumonía Asociada a Ventilador</option>');
+        elemento.innerHTML += ('<option value="NAAS-RP">NAAS Relacionada a Procedimiento</option>');
+        elemento.innerHTML += ('<option value="NAAS-NRP">NAAS No Relacionada a Procedimiento</option>');
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
     } else if (value == 'ITS'){
-        elemento.innerHTML += ('<option value="Relacionada a catéter central">ITS Relacionada a catéter central</option>');
-        elemento.innerHTML += ('<option value="Relacionada a Procedimiento">ITS Relacionada a Procedimiento</option>');
-        elemento.innerHTML += ('<option value="Relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos">ITS Relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos</option>');
-        elemento.innerHTML += ('<option value="Secundario a daño de la barrera mucosa">ITS Secundario a daño de la barrera mucosa</option>');
+        elemento.innerHTML += ('<option value="CC">ITS relacionada a catéter central </option>');
+        elemento.innerHTML += ('<option value="RP">ITS relacionada a procedimiento</option>');
+        elemento.innerHTML += ('<option value="IV">ITS relacionada a posible contaminación de soluciones, infusiones o medicamentos intravenosos </option>');
+        elemento.innerHTML += ('<option value="DBM">ITS secundario a daño de la barrera mucosa</option>');
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
@@ -55,6 +55,19 @@ document.getElementById('servicio').addEventListener('change', function(event){
     }
 });
 
+document.getElementById('pb').addEventListener('change', function(event){
+    if (document.getElementById('pb').value=="Otro"){
+        document.getElementById('pbtxt').value = '';
+        document.getElementById('pbtag').hidden = false;
+        document.getElementById('pbtxt').hidden = false;
+        document.getElementById('pbtxt').required = true;
+    }else{
+        document.getElementById('pbtag').hidden = true;
+        document.getElementById('pbtxt').hidden = true;
+        document.getElementById('pbtxt').required = false;
+    }
+});
+
 async function submitForm() {
     var loader = document.getElementById('loader');
     loader.hidden = false;
@@ -74,14 +87,14 @@ async function submitForm() {
     }
 
     if (document.getElementById('am').value.length != 8) {
-        alert('Verifique el agregado médico. (8 caracteres)')
+        alert('Verifique el agregado médico. (8 caracteres)\nEjemplo: 1F2000OR')
         document.getElementById('submit').disabled = false;
         loader.hidden = true;
         return;
     }
 
     if (!(document.getElementById('nombre').value).includes(" ")) {
-        alert('Ingrese su Nombre Completo.');
+        alert('Ingrese el Nombre Completo de quien notifica.');
         document.getElementById('submit').disabled = false;
         loader.hidden = true;
         return;
@@ -106,23 +119,41 @@ async function submitForm() {
         serviciovalue = document.getElementById('servicio').value;
     }
 
+    if (document.getElementById('pb').value=="Otro"){
+        pbvalue = document.getElementById('pbtxt').value;
+        if (pbvalue == ''){
+            document.getElementById('submit').disabled = false;
+            loader.hidden = true;
+            alert('Escriba el valor de Otro IAAS. \nEn caso de no aparecer la casilla, seleccione un valor diferente y seleccione nuevamente Otro. \nO recargue.');
+            return;
+        }
+    }else{
+        pbvalue = document.getElementById('pb').value;
+    }
+
     if (document.getElementById('categoria').value == 'Médico') {
         categoriavalue = document.getElementById('especialidad').value.toUpperCase();
     } else{
         categoriavalue = document.getElementById('categoria').value.toUpperCase();
     }
 
+    if (document.getElementById('pboption').value == '') {
+        tipovalue = pbvalue
+    } else{
+        tipovalue = document.getElementById('pboption').value
+    }
+
     var nombreCompleto = document.getElementById('nombreP').value.toUpperCase() + ' ' + document.getElementById('apellidoP').value.toUpperCase();
     const formData = {
         nombreP: nombreCompleto,
-        nss: document.getElementById('nss').value.toString(),
+        nss: document.getElementById('nss').value.toString().padStart(10,'0'),
         am: document.getElementById('am').value.toUpperCase(),
         servicio: serviciovalue.toUpperCase(),
         cama: document.getElementById('cama').value,
-        pb: document.getElementById('pb').value.toUpperCase(),
-        tipo: document.getElementById('pboption').value.toUpperCase(),
+        pb: pbvalue.toUpperCase(),
+        tipo: tipovalue.toUpperCase(),
         nombre: document.getElementById('nombre').value.toUpperCase(),
-        matricula: document.getElementById('matricula').value.toString(),
+        matricula: document.getElementById('matricula').value,
         cargo: categoriavalue.toUpperCase()
     };
     try {
@@ -157,6 +188,10 @@ async function submitForm() {
             document.getElementById('pboption').value = "";
             document.getElementById('pboption').hidden = true;
             document.getElementById('pblabel').hidden = true;
+            document.getElementById('pbtag').hidden = true;
+            document.getElementById('pbtxt').hidden = true;
+            document.getElementById('serviciotag').hidden = true;
+            document.getElementById('serviciotxt').hidden = true;
         } else {
             console.error('Error:', result.message);
             document.getElementById('result').textContent = `Error: ${result.message}`;
