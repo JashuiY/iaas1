@@ -21,6 +21,9 @@ document.getElementById('pb').addEventListener('change', function(event){
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
+        document.getElementById('pbtag').hidden = true;
+        document.getElementById('pbtxt').hidden = true;
+        document.getElementById('pbtxt').required = false;
     } else if (value == 'Neumonías Asociadas a la Atención de la Salud'){
         elemento.innerHTML += ('<option value="NAV">Neumonía Asociada a Ventilador</option>');
         elemento.innerHTML += ('<option value="NAAS-RP">NAAS Relacionada a Procedimiento</option>');
@@ -28,6 +31,9 @@ document.getElementById('pb').addEventListener('change', function(event){
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
+        document.getElementById('pbtag').hidden = true;
+        document.getElementById('pbtxt').hidden = true;
+        document.getElementById('pbtxt').required = false;
     } else if (value == 'Infección del Torrente Sanguíneo'){
         elemento.innerHTML += ('<option value="CC">ITS relacionada a catéter central </option>');
         elemento.innerHTML += ('<option value="RP">ITS relacionada a procedimiento</option>');
@@ -36,6 +42,9 @@ document.getElementById('pb').addEventListener('change', function(event){
         document.getElementById('pboption').hidden = false;
         document.getElementById('pblabel').hidden = false;
         document.getElementById('pboption').required = true;
+        document.getElementById('pbtag').hidden = true;
+        document.getElementById('pbtxt').hidden = true;
+        document.getElementById('pbtxt').required = false;
     } else if (value=='Otro'){
         document.getElementById('pbtxt').value = '';
         document.getElementById('pbtag').hidden = false;
