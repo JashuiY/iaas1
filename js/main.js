@@ -1,3 +1,9 @@
+document.getElementById('am').addEventListener('change', function(event){
+    const re = /[1-7](F|M)(1|2)[0-9]{3}(OR|ES|SF|SA|PE|ND)/;
+    if (re.test(document.getElementById('am').value.toUpperCase()) == false){
+        alert('Verifique el agregado médico. (8 caracteres)\nEjemplo: 1F2000OR');
+    }
+});
 document.getElementById('categoria').addEventListener('change', function(event){
     var value = document.getElementById('categoria').value;
     if (value == 'Médico'){
