@@ -78,13 +78,19 @@
             </div>
 
             <div class="form-row">
-                <label>Cama:</label>
-                <input id="cama" type="number" name="cama" placeholder="#" required>
+                <label>:</label>
+                <input type="radio" name="localizacion" id="inconsultaexterna" value="Consulta Externa" required>
+                <label for="inconsultaexterna">Consulta Externa</label>
+                <input type="radio" name="localizacion" id="incama" value="Cama" >
+                <label for="incama">Cama</label>
+                <input id="cama" type="number" name="cama" placeholder="  #" disabled>
+            </div>
+            <div class="form-row2">                
                 <label>Pb. IAAS:</label>
                 <select id="pb"  required>
                     <option style="display:none"></option>
                     <option value="Infección de Sitio Quirúrgico">Infección de Sitio Quirúrgico</option>
-                    <option value="Neumonías Asociadas a la Atención de la Salud">Neumonías Asociadas a la Atención de la Salud</option>
+                    <option value="Neumonías">Neumonías Asociadas a la Atención de la Salud</option>
                     <option value="Infección del Torrente Sanguíneo">Infección del Torrente Sanguíneo Asociada a la Atención de la Salud</option>
                     <option value="Infección de Vías Urinarias Asociada a Catéter Urinario">Infección de Vías Urinarias Asociada a Catéter Urinario</option>
                     <option value="Otro">Otro</option>
@@ -155,11 +161,11 @@
 
             <div class="form-row2">
                 <button id="reset" type="reset" class="boton">Limpiar</button>
-                <button id="submit" type="submit" class="boton">Enviar</button>
+                <button id="submit" type="submit" class="boton">Notificar</button>
             </div>
-        </form>
-        
+        </form>        
     </div>
+    
     <footer>
         <div class="send">
             <i class="fa-solid fa-eye"></i><a href="visualize.html" style="color: white;"> Ver registros</a>
