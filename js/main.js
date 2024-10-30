@@ -244,6 +244,8 @@ async function submitForm() {
 async function generatePDF(data) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
+    var timestamp = new Date();
+    timestamp = timestamp.toLocaleString("es-mx");
 
     doc.setFont('Helvetica', 'bold');
     doc.setFontSize(16);
@@ -272,7 +274,7 @@ async function generatePDF(data) {
     line42 = 'Tipo: ';
     line421 = data.tipo;
     line51 = 'Fecha de notificación: ';
-    line511 = '29 de octubre de 2024'
+    line511 = timestamp;
 
     line61 = 'Nombre de quien notifica: ';
     line611 = data.nombre;
