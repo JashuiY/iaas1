@@ -211,7 +211,7 @@ async function submitForm() {
         if (result.status === 'success') {
             loader.hidden = true;
             console.log('Data saved and received:', formData); //result.data[0]["oportunidad"]
-            var not = new Date();
+            not = new Date();
             alert('Información registrada correctamente.\nFecha notificación: ' + not.toLocaleString('es-mx'));
             generatePDF(formData);
             
