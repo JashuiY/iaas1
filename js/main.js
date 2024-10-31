@@ -359,7 +359,7 @@ async function generatePDF(data) {
     doc.text(line721, x[10]+space, heighs[6]);
     
     // Save the PDF
-    pdfname = not.getFullYear() + not.getMonth() + not.getDate() + '_NSS' + data.nss + '.pdf'
+    pdfname = not.getFullYear() + (not.getMonth()+1).toString().padStart(2,'0') + not.getDate().padStart(2,'0') + '_NSS' + data.nss + '.pdf';
     doc.save(pdfname);
 }
 
