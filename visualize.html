@@ -9,18 +9,30 @@
 </head>
 <body>    
     <h2><center>REGISTROS DE CASOS SOSPECHOSOS DE INFECCIÓN ASOCIADA A LA ATENCIÓN DE LA SALUD</h2></center>
-    <div class="form-all">
-        
+    <div class="form-all">        
         <div style="text-align: left; max-width: 1500px;">
             <i class="fa-solid fa-pencil"></i><a href="index.html" style="color: var(--bold-color);"> Capturar registros</a>
         </div>
 
-        <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">
-            
-            <div class="form-row2">
-                <label>Fecha de visualización</label>
-                <input id="fecha" type="date" name="fecha">                
+        <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">            
+            <div class="form-row2" id="periodoDiv">
+                <label>Periodo: </label>
+                <select id="periodoOpt">
+                    <option style="display:none"></option>
+                </select>
             </div>
+
+            <div class="form-row2" id="fechasDiv" hidden>
+                <label>Fecha de: </label>
+                <input id="fechaInit" type="date" name="fechaInit">
+                <label style="margin-left: 10px;">a </label>
+                <input id="fechaEnd" type="date" name="fechaEnd">
+            </div>
+
+            <div class="choose">
+                <input type="checkbox" id="switch" class="checkbox" value="false" />                   
+                <label for="switch" class="toggle"><p>Periodo &nbsp; Fechas</p></label> 
+            </div>       
 
             <div id="loader" hidden>
                 <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
@@ -28,6 +40,7 @@
 
             <table id="tabla" style="width: 100%; text-align: left;">
                 <tr>
+                    <th style="width: 3.33%;">N</th>
                     <th style="width: 13.33%;">Nombre del paciente</th>
                     <th style="width: 6.66%;">NSS</th>
                     <th style="width: 10.0%;">Servicio</th>
@@ -37,11 +50,10 @@
                     <th style="width: 12.0%;">Fecha</th>
                     <th style="width: 13.33%;">Nombre</th>
                     <th style="width: 10.0%;">Cargo</th>
-                    <th style="width: 6.66%;">Matrícula</th>
+                    <!---<th style="width: 6.66%;">Matrícula</th>--->
                 </tr>
             </table>
         </form>
-
         <div id="result"></div>
     </div>
     
