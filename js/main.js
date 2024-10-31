@@ -344,7 +344,7 @@ async function generatePDF(data) {
 
 
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(11);
+    doc.setFontSize(10);
     doc.text(line111, x[0]+marginleft+space, heighs[0]);
 
     doc.text(line211, x[1]+marginleft+space, heighs[1]);
@@ -352,7 +352,7 @@ async function generatePDF(data) {
     doc.text(line231, x[3]+space, heighs[1], {maxWidth:30});
     doc.text(line311, x[4]+marginleft+space, heighs[2]);
     doc.text(line411, x[5]+marginleft+space, heighs[3], {maxWidth:middleWidth-x[5]-marginleft-space});
-    doc.text(line421, x[6]+space, heighs[3]);
+    doc.text(line421, x[6]+space, heighs[3], {maxWidth:180-x[6]-space});
     doc.text(line511, x[7]+marginleft+space, heighs[4]);
     doc.text(line611, x[8]+marginleft+space, heighs[5]);
     doc.text(line711, x[9]+marginleft+space, heighs[6]);
