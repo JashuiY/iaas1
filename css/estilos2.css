@@ -5,7 +5,7 @@
 }
 
 body{
-    background: #b09c7a;/*var(--bold-color);/*linear-gradient(-45deg, var(--bold-color), var(--bg-color), var(--clear-color));*/
+    background: #b48e5d;/*var(--bold-color);/*linear-gradient(-45deg, var(--bold-color), var(--bg-color), var(--clear-color));*/
     /*background-color: var(--bg-color);*/
     color: white;
 }
@@ -41,9 +41,16 @@ body{
     font-size: 20px;
     text-align: center;
 }
+.form-row2 select{
+    width: 10%;
+    text-align: center;
+    height: 30px;
+    font-size: 20px;
+}
 
 th, td{
     border: 1px solid black;
+    /*border-radius: 10px;*/
     border-color: black;
     text-align: center;
     font-family: Arial;
@@ -57,4 +64,57 @@ a{
     text-decoration: none;
     border-color: black;
     cursor: default;
+}
+
+.choose{
+    display: flex;
+    margin-right: 70px;
+    margin-left: auto;
+    max-width: 50px;
+    margin-bottom: 30px;
+} 
+/* toggle in label designing */
+.toggle {
+    /*position : relative ;*/
+    display : flex;
+    width : 50px;
+    height : 18px;
+    background-color: lightblue;
+    border-radius: 0px;
+    border: 2px solid black;
+    rotate: 90deg;
+}              
+/* After slide changes */
+.toggle:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 16px;
+    border-radius: 0;
+    background-color: black;
+    bottom: 1px; 
+    left: 1px;
+    transition:  all 0.5s;
+}
+      
+/* Toggle text */
+p {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    rotate: -90deg;
+    margin-left: 10px;
+    margin-top: -80px;
+}  
+/* Checkbox checked effect */
+.checkbox:checked + .toggle::after {
+    left : 24px; 
+}              
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+    background-color: lightblue;
+}              
+/* Checkbox vanished */
+.checkbox { 
+    display : none;
 }
