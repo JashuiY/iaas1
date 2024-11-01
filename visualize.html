@@ -8,13 +8,18 @@
     <link rel="stylesheet" href="css/estilos2.css"> 
 </head>
 <body>    
-    <h2><center>REGISTROS DE CASOS SOSPECHOSOS DE INFECCIÓN ASOCIADA A LA ATENCIÓN DE LA SALUD</h2></center>
-    <div class="form-all">        
+    <div class="topper">
+        <h2><center>NOTI &ensp; IAAS</center></h2>
+        <h4>Captura</h4>
+    </div>
+    <div class="form-all">
+        
         <div style="text-align: left; max-width: 1500px;">
             <i class="fa-solid fa-pencil"></i><a href="index.html" style="color: var(--bold-color);"> Capturar registros</a>
         </div>
 
-        <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">            
+        <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">
+            
             <div class="form-row2" id="periodoDiv">
                 <label>Periodo: </label>
                 <select id="periodoOpt">
@@ -54,6 +59,7 @@
                 </tr>
             </table>
         </form>
+
         <div id="result"></div>
     </div>
     
