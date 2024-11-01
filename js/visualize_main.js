@@ -2,25 +2,25 @@
 document.addEventListener("DOMContentLoaded", function() {
     var meses = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
     var elemento = document.getElementById('periodoOpt');
-    var n = setPeriods(); // ACCORDING TO THE NUMBER OF MONTHS IT WILL DISPLAY ONLY N NUMBER OF MONTHS
+    var n = setPeriods();   // ACCORDING TO THE NUMBER OF MONTHS IT WILL DISPLAY ONLY N NUMBER OF MONTHS
     for (var i = 0; i <= n; i++) {                    
-        elemento.innerHTML += ("<option value=\"" + i + "\">" + meses[i] + "</option>"); // MONTHS BEGINS COUNT IN ZERO(0)
+        elemento.innerHTML += ("<option value=\"" + i + "\">" + meses[i] + "</option>");    // MONTHS BEGINS COUNT IN ZERO(0)
     }
 });
 // WHEN VALUE CHANGES IN SWITCH FROM PERIODOS TO FECHAS
 document.getElementById('switch').addEventListener('change', function(event){
-    var opt = (document.getElementById('switch').checked); // WHICH OPTION IS SELECTED
+    var opt = (document.getElementById('switch').checked);  // WHICH OPTION IS SELECTED
     var elePeriodo = document.getElementById('periodoDiv'); // SELECTION OF THE DIV PERIODO (LABEL AND SELECT)
-    var eleFechas = document.getElementById('fechasDiv');    // SELECTION OF THE DIV FECHAS (LABEL AND INPUT DATE)
-    var meses = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE']; 
-    var elemento = document.getElementById('periodoOpt');    // SELECTION OF THE SELECT ELEMENT
-    elemento.innerHTML = ("<option style=\"display:none\"></option>");    // ADDING THE DISPLAY NONE  FOR RESETING
+    var eleFechas = document.getElementById('fechasDiv');   // SELECTION OF THE DIV FECHAS (LABEL AND INPUT DATE)
+    var meses = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+    var elemento = document.getElementById('periodoOpt');   // SELECTION OF THE SELECT ELEMENT
+    elemento.innerHTML = ("<option style=\"display:none\"></option>");  // ADDING THE DISPLAY NONE  FOR RESETING
     if (opt == false){          // PERIODOS
         elePeriodo.hidden = false;
         eleFechas.hidden = true;
         var n = setPeriods();
         for (var i = 0; i <= n; i++) {                    
-            elemento.innerHTML += ("<option value=\"" + i + "\">" + meses[i] + "</option>");    // ADDING TO THE MONTHS
+            elemento.innerHTML += ("<option value=\"" + i + "\">" + meses[i] + "</option>");
         }
     } else{                     // FECHAS
         elePeriodo.hidden = true;
@@ -31,9 +31,9 @@ document.getElementById('switch').addEventListener('change', function(event){
 // WHEN VALUE CHANGES FROM PERIODO -> MES IS SELECTED
 document.getElementById('periodoOpt').addEventListener('change', function(event){
     var mes = document.getElementById('periodoOpt').value;
-    var año = 2024    // CURRENT YEAR (FOR FUTURE WORK: MAKING USER TO ENTER YEAR)
+    var año = 2024; // CURRENT YEAR (FOR FUTURE WORK: MAKING USER TO ENTER YEAR)
     var date2 = new Date(año,mes,25); // 25 mes 2024
-    if (mes==0){mes=11;año=2023;} else{mes=mes-1;}    // WHEN THE MONTH IS JANUARY -> 0 TO START IN DECEMBER AND PAST YEAR (FOR FUTURE WORK: RESTING 1 TO THE YEAR ENTERED BY USER)
+    if (mes==0){mes=11;año=2023;} else{mes=mes-1;}  // WHEN THE MONTH IS JANUARY -> 0 TO START IN DECEMBER AND PAST YEAR (FOR FUTURE WORK: RESTING 1 TO THE YEAR ENTERED BY USER)
     var date1 = new Date(año,mes,26); // 26 mes 202te
     var day1 = date1.toISOString().substring(0,10); //2023-12-26 <- FORMAT NEEDED
     var day2 = date2.toISOString().substring(0,10); //2024-01-25 <- FORMAT NEEDED
@@ -57,7 +57,7 @@ function setPeriods(){
     var date = new Date();
     var mes = date.getMonth();
     var dia = date.getDate();
-    if (dia > 25){        // WHEN THE DAY IS AFTER 25TH, IS ANOTHER MONTH
+    if (dia > 25){  // WHEN THE DAY IS AFTER 25TH, IS ANOTHER MONTH
         mes = mes + 1;
     }
     return mes;
@@ -74,13 +74,13 @@ function getArrayDates(day1, day2){
     var d2 = parseInt(day2.substring(day2.length-2, day2.length));
     var m2 = parseInt(day2.substring(5,7));
     var y2 = parseInt(day2.substring(0,4));
-    var date1 = new Date(y1,m1-1,d1);    // CREATING OBJECT DATE 
-    var date2 = new Date(y2,m2-1,d2);    
-    days = ((date2.getTime()-date1.getTime()) / 1000 / 60 / 60 / 24) + 1; // SUBSTRACTING TIMES TO GET THE DAYS
+    var date1 = new Date(y1,m1-1,d1);   // CREATING OBJECT DATE 
+    var date2 = new Date(y2,m2-1,d2);
+    days = ((date2.getTime()-date1.getTime()) / 1000 / 60 / 60 / 24) + 1;   // SUBSTRACTING TIMES TO GET THE DAYS
     var arrayDates = [];
 
     for (var i = 0; i < days; i++) {
-        var date = new Date((date1.getTime() + (86400000*i)));    // ADDING THE NUMBER OF DAYS ACCORDING TO MILLISECONDS
+        var date = new Date((date1.getTime() + (86400000*i)));  // ADDING THE NUMBER OF DAYS ACCORDING TO MILLISECONDS
         arrayDates.push(date.toLocaleDateString('es-mx'));
     }
     return arrayDates;            
