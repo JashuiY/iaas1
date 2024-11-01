@@ -8,16 +8,19 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    
-    <h2><center>NOTIFICACIÓN DE CASO SOSPECHOSO DE INFECCIÓN ASOCIADA A LA ATENCIÓN DE LA SALUD</h2></center>
+    <div class="topper">
+        <h2><center>NOTI &ensp; IAAS</center></h2>
+    </div>
     <!---<h5 align="center" ><script type="text/javascript">var timestamp = new Date();document.write(timestamp.toLocaleString("es-mx"));</script></h5>--->
     <div class="send" id="loader" hidden>
         <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
     </div>
+
+
     <div class="form-all">
         <form id="dataForm" onsubmit="event.preventDefault(); submitForm();">
             <div class="form-row2">
-                <label>Fecha y hora de notificación:</label>                
+                <label class="labels">Fecha y hora de notificación:</label>                
                 <div class="date"><script type="text/javascript">var timestamp = new Date();document.write(timestamp.toLocaleString("es-mx"));</script></div>
             </div>
             <fieldset>
@@ -34,7 +37,7 @@
             </fieldset>
 
             <div class="form-row2">
-                <label>Servicio:</label>
+                <label class="labels">Servicio:</label>
                 <select id="servicio"  required>
                     <option style="display:none"></option>
                     <option value="Alojamiento Conjunto">Alojamiento Conjunto</option>
@@ -73,20 +76,20 @@
             </div>
 
             <div class="form-otros">                
-                <label id="serviciotag" for="otroServicio"  hidden>Especifique:</label>
+                <label id="serviciotag" for="otroServicio" class="labels" hidden>Especifique:</label>
                 <input id="serviciotxt" type="text" name="otroServicio" placeholder="Escriba otro servicio" hidden>
             </div>
 
             <div class="form-row">
-                <label>:</label>
+                <label class="labels" style="margin-left: 15px; margin-right:15px;">Ubicación:</label>
                 <input type="radio" name="localizacion" id="inconsultaexterna" value="Consulta Externa" required>
                 <label for="inconsultaexterna">Consulta Externa</label>
                 <input type="radio" name="localizacion" id="incama" value="Cama" >
-                <label for="incama">Cama</label>
-                <input id="cama" type="number" name="cama" placeholder="  #" disabled>
+                <label for="incama">Cama:</label>
+                <input id="cama" type="number" name="cama" placeholder="" disabled>
             </div>
             <div class="form-row2">                
-                <label>Pb. IAAS:</label>
+                <label class="labels">Pb. IAAS:</label>
                 <select id="pb"  required>
                     <option style="display:none"></option>
                     <option value="Infección de Sitio Quirúrgico">Infección de Sitio Quirúrgico</option>
@@ -98,14 +101,14 @@
             </div>
 
             <div class="form-otros">                
-                <label id="pbtag" for="otroPb"  hidden>Especifique:</label>
+                <label id="pbtag" for="otroPb" class="labels"  hidden>Especifique:</label>
                 <input id="pbtxt" type="text" name="otroPb" placeholder="Escriba otra IAAS" hidden>
             </div>
 
 
 <!---           OPCION 1             --->
             <div class="form-row2">
-                <label id="pblabel" hidden>Tipo:</label>
+                <label id="pblabel" class="labels" hidden>Tipo:</label>
                 <select id="pboption"  hidden>
                     <option style="display:none"></option>
                 </select>
@@ -123,7 +126,7 @@
                             <label id="espL" hidden>Especialidad:</label>
                         </div>
                         <div class="nospace">
-                            <select id="categoria"  required>
+                            <select id="categoria" required>
                                 <option style="display:none"></option>
                                 <option value="Enfermera">Enfermera</option>
                                 <option value="Médico">Médico</option>
@@ -131,7 +134,7 @@
                             </select>
                             <select id="especialidad" hidden>
                                 <option style="display:none"></option>
-                                <option value="Angiólog(a)o">Angiólogo(a)</option>
+                                <option value="Angiólogo(a)">Angiólogo(a)</option>
                                 <option value="Cardiólogo(a)">Cardiólogo(a)</option>
                                 <option value="Cirujano(a) General">Cirujano(a) General</option>
                                 <option value="Cirujano(a) Maxilofacial">Cirujano(a) Maxilofacial</option>
@@ -163,9 +166,9 @@
                 <button id="reset" type="reset" class="boton">Limpiar</button>
                 <button id="submit" type="submit" class="boton">Notificar</button>
             </div>
-        </form>        
+        </form>
+        
     </div>
-    
     <footer>
         <div class="send">
             <i class="fa-solid fa-eye"></i><a href="visualize.html" style="color: white;"> Ver registros</a>
