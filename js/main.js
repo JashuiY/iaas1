@@ -292,7 +292,7 @@ async function generatePDF(data) {
     space = 0;
     heighs = [70, 80, 90, 100, 110, 130, 140];
     x = [];
-    line_spaces = [marginleft+40, marginleft+105, marginleft+50, marginleft+125] // Donde comenzarán las letras
+    line_spaces = [marginleft+40, marginleft+105, marginleft+45, marginleft+105] // Donde comenzarán las letras
 
     doc.addImage(base64image, 'JPEG', 125, 10, 60, 25)
     doc.text(line0, middleWidth, margintop, {maxWidth:180, align:"center"});
@@ -356,10 +356,15 @@ async function generatePDF(data) {
     doc.text(line511, x[7]+marginleft+space, heighs[4]);
     doc.text(line611, x[8]+marginleft+space, heighs[5]);
     doc.text(line711, x[9]+marginleft+space, heighs[6]);
-    doc.text(line721, x[10]+space, heighs[6]);
+    doc.text(line721, x[10]+space, heighs[6], {maxWidth:30});
+
+    //console.log(line231, 'longitud', doc.getTextWidth(line231).toString());
+    //console.log(line111, 'comienza en: ', getX(doc,line11)+marginleft+space);
+    //console.log('inicio de ',line11, getX(doc, line11, marginleft+space));
     
     // Save the PDF
-    pdfname = not.getFullYear() + (not.getMonth()+1).toString().padStart(2,'0') + not.getDate().toString().padStart(2,'0') + '_NSS' + data.nss + '.pdf';
+    pdfname = not.getFullYear().toString() + (not.getMonth()+1).toString().padStart(2,'0') + not.getDate().toString().padStart(2,'0') + '_NSS' + data.nss + '.pdf';
+    //console.log(pdfname, not);
     doc.save(pdfname);
 }
 
